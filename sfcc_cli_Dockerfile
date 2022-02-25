@@ -10,15 +10,14 @@ unzip \
 curl \
 wget \
 npm \
-openjdk8-jre \
 jq
 
 # install Salesforce CLI v.2.9.1
-RUN wget -q https://github.com/SalesforceCommerceCloud/sfcc-ci/releases/download/v2.9.1/sfcc-ci-linux
-RUN chmod +x ./sfcc-ci-linux;
-RUN mv ./sfcc-ci-linux /usr/local/bin/sfcc-ci
-RUN sfcc-ci --help
+
+RUN git clone https://github.com/SalesforceCommerceCloud/sfcc-ci.git
+RUN cd sfcc-ci && npm install -g
+RUN sfcc-ci --version
 
 # install JFROG CLI
 RUN npm install -g jfrog-cli-go --unsafe-perm=true --allow-root
-RUN jfrog --help
+RUN jfrog --version
