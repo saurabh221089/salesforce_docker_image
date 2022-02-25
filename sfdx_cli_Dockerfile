@@ -10,9 +10,6 @@ unzip \
 curl \
 wget \
 npm \
-openjdk8-jre \
-openssh-client \
-perl \
 jq
 
 # install Salesforce CLI from npm
