@@ -3,6 +3,7 @@ FROM node:16-alpine
 #add usefull tools
 RUN apk add --update --no-cache \
 git \
+grep \
 sed \
 findutils \
 bash \
@@ -17,9 +18,10 @@ RUN npm install sfdx-cli --global
 RUN sfdx --version
 
 # install SFDX-Git-Delta plugin - https://github.com/scolladon/sfdx-git-delta
-RUN echo y | sfdx plugins:install sfdx-git-delta
+RUN echo y | sfdx plugins:install sfdx-git-delta@latest
 RUN sfdx plugins
 
-# legacy way to install SFDX-Git-Delta, if you still want to use the sgd command (not needed if you use the Salesforce CLI extension)
-RUN npm install sfdx-git-delta@latest --global
-RUN sgd --version
+# install Eslint + Prettier for linting
+RUN npm install eslint prettier --global
+RUN eslint -v
+RUN prettier -v
